@@ -32,6 +32,9 @@ jobs:
       - name: Test
         run: go test -v ./...
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: echo Deploying to ${{ github.event.inputs.env }}
