@@ -9,10 +9,10 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      name:
-        description: "Name of the application to build"
+      env:
+        description: "Deployment environment"
         type: string
-        default: gron
+        default: dev
         required: true
 
 jobs:
@@ -31,3 +31,7 @@ jobs:
 
       - name: Test
         run: go test -v ./...
+
+      - name: Deploy
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: echo Deploying to ${{ github.event.inputs.env }}
