@@ -7,6 +7,13 @@ on:
   push:
     branches: ["master"]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Name of the application to build"
+        type: string
+        default: gron
+        required: true
 
 jobs:
   build:
